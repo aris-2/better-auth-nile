@@ -1,0 +1,19 @@
+{
+  "name": "better-auth-nile",
+  "version": "0.0.0",
+  "description": "",
+  "main": "intex.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aris-2/better-auth-nile.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aris-2/better-auth-nile/issues"
+  },
+  "homepage": "https://github.com/aris-2/better-auth-nile#readme"
+}
