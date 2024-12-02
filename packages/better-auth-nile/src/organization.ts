@@ -203,7 +203,7 @@ const ac = createAccessControl({
 const a = ac.newRole({
 	name: ["action"],
 });
-export const organization = <O extends OrganizationOptions>(options?: O) => {
+export const nile = <O extends OrganizationOptions>(options?: O) => {
 	const endpoints = {
 		createOrganization,
 		updateOrganization,
@@ -243,7 +243,7 @@ export const organization = <O extends OrganizationOptions>(options?: O) => {
 			: DefaultStatements
 		: DefaultStatements;
 	return {
-		id: "organization",
+		id: "nile",
 		endpoints: {
 			...api,
 			hasPermission: createAuthEndpoint(

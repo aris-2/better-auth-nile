@@ -14,7 +14,7 @@ import {
 	type Role,
 } from "./access";
 import type { BetterAuthClientPlugin } from "better-auth/client";
-import type { organization } from "./organization";
+import type { nile } from "./organization";
 import { useAuthQuery } from "better-auth/client";
 
 interface OrganizationClientOptions {
@@ -46,7 +46,7 @@ export const organizationClient = <O extends OrganizationClientOptions>(
 	return {
 		id: "organization",
 		$InferServerPlugin: {} as ReturnType<
-			typeof organization<{
+			typeof nile<{
 				ac: O["ac"] extends AccessControl
 					? O["ac"]
 					: AccessControl<DefaultStatements>;

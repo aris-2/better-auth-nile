@@ -14,7 +14,7 @@ import { reactResetPasswordEmail } from "./email/rest-password";
 import { resend } from "./email/resend";
 import { nextCookies } from "better-auth/next-js";
 import { addAccountToSession } from "./plugin";
-import {organization} from "better-auth-nile"
+import {nile} from "better-auth-nile"
 import { PostgresDialect } from 'kysely'
 import { Pool } from "pg"
 import { v4 as uuidv4 } from "uuid";
@@ -118,7 +118,7 @@ export const auth = betterAuth({
 		},
 	},
 	plugins: [
-		organization({
+		nile({
 			async sendInvitationEmail(data) {
 				const res = await resend.emails.send({
 					from,
