@@ -1,13 +1,14 @@
 import { z } from "zod";
-import { createAuthEndpoint } from "../../../api/call";
+import { createAuthEndpoint } from "better-auth/api";
 import { getOrgAdapter } from "../adapter";
 import { orgMiddleware, orgSessionMiddleware } from "../call";
 import type { InferRolesFromOption, Member } from "../schema";
 import { APIError } from "better-call";
-import type { User } from "../../../db/schema";
-import { generateId } from "../../../utils";
+import type { User } from "better-auth/db/schema";
+import { generateId } from "../utils";
+
 import type { OrganizationOptions } from "../organization";
-import { getSessionFromCtx } from "../../../api";
+import { getSessionFromCtx } from "better-auth/api";
 
 export const addMember = <O extends OrganizationOptions>() =>
 	createAuthEndpoint(

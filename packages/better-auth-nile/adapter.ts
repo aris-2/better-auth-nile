@@ -1,5 +1,5 @@
-import type { Session, User } from "../../db/schema";
-import { getDate } from "../../utils/date";
+import type { Session, User } from "better-auth/db/schema";
+import { getDate } from "./utils/date";
 import type { OrganizationOptions } from "./organization";
 import type {
 	Invitation,
@@ -9,8 +9,8 @@ import type {
 	Organization,
 	OrganizationInput,
 } from "./schema";
-import { BetterAuthError } from "../../error";
-import type { AuthContext } from "../../types";
+import { BetterAuthError } from "better-auth/error";
+import type { AuthContext } from "better-auth/types";
 
 export const getOrgAdapter = (
 	context: AuthContext,

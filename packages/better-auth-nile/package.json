@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/aris-2/better-auth-nile/issues"
   },
-  "homepage": "https://github.com/aris-2/better-auth-nile#readme"
+  "homepage": "https://github.com/aris-2/better-auth-nile#readme",
+  "dependencies": {
+    "@better-fetch/fetch": "^1.1.12",
+    "better-auth": "^1.0.7",
+    "better-call": "0.3.3-beta.2",
+    "nanostores": "^0.11.3",
+    "uuid": "^11.0.3",
+    "zod": "^3.23.8"
+  }
 }

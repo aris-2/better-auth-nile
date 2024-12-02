@@ -1,10 +1,10 @@
 import { z } from "zod";
-import { createAuthEndpoint } from "../../../api/call";
-import { generateId } from "../../../utils/id";
+import { createAuthEndpoint } from "better-auth/api";
+import { generateId } from "better-auth/utils/id";
 import { getOrgAdapter } from "../adapter";
 import { orgMiddleware, orgSessionMiddleware } from "../call";
 import { APIError } from "better-call";
-import { setSessionCookie } from "../../../cookies";
+import { setSessionCookie } from "better-auth/cookies";
 
 export const createOrganization = createAuthEndpoint(
 	"/organization/create",

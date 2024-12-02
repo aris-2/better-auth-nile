@@ -1,7 +1,7 @@
 import { describe, expect, expectTypeOf } from "vitest";
 import { getTestInstance } from "../../test-utils/test-instance";
 import { organization } from "./organization";
-import { createAuthClient } from "../../client";
+import { createAuthClient } from "better-auth/";
 import { organizationClient } from "./client";
 import { createAccessControl } from "./access";
 

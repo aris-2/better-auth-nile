@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { createAuthEndpoint } from "../../../api/call";
-import { getSessionFromCtx } from "../../../api/routes";
+import { createAuthEndpoint } from "better-auth/api";
+import { getSessionFromCtx } from "better-auth/api";
 import { getOrgAdapter } from "../adapter";
 import { orgMiddleware, orgSessionMiddleware } from "../call";
 import { type InferRolesFromOption } from "../schema";

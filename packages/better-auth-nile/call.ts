@@ -1,7 +1,7 @@
 import { type Context } from "better-call";
-import type { Session, User } from "../../db/schema";
-import { createAuthMiddleware } from "../../api/call";
-import { sessionMiddleware } from "../../api";
+import type { Session, User } from "better-auth/db/schema";
+import { createAuthMiddleware } from "better-auth/api";
+import { sessionMiddleware } from "better-auth/api";
 import type { Role, defaultRoles } from "./access";
 import type { OrganizationOptions } from "./organization";
 

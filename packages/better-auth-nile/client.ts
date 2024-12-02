@@ -3,8 +3,8 @@ import type {
 	Invitation,
 	Member,
 	Organization,
-} from "../../plugins/organization/schema";
-import type { Prettify } from "../../types/helper";
+} from "./schema";
+import type { Prettify } from "better-auth/types/helper";
 import {
 	adminAc,
 	defaultStatements,
@@ -13,9 +13,9 @@ import {
 	type AccessControl,
 	type Role,
 } from "./access";
-import type { BetterAuthClientPlugin } from "../../client/types";
+import type { BetterAuthClientPlugin } from "better-auth/client/types";
 import type { organization } from "./organization";
-import { useAuthQuery } from "../../client";
+import { useAuthQuery } from "better-auth/client";
 
 interface OrganizationClientOptions {
 	ac: AccessControl;

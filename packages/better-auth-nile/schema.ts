@@ -1,5 +1,5 @@
 import { z, ZodLiteral } from "zod";
-import { generateId } from "../../utils";
+import { generateId } from "./utils/id";
 import type { OrganizationOptions } from "./organization";
 
 export const role = z.string();
