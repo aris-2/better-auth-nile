@@ -198,7 +198,7 @@ export const getOrgAdapter = (
 			});
 			return member;
 		},
-		updateMember: async (memberId: string, role: string) => {
+		updateMember: async (memberId: string, organizationId:string ,role: string) => {
 			const member = await adapter.update<Member>({
 				model: "member",
 				where: [
@@ -206,6 +206,10 @@ export const getOrgAdapter = (
 						field: "id",
 						value: memberId,
 						
+					},
+					{
+						field: "organizationId",
+						value: organizationId,
 					}
 				],
 				update: {
@@ -214,7 +218,7 @@ export const getOrgAdapter = (
 			});
 			return member;
 		},
-		deleteMember: async (memberId: string) => {
+		deleteMember: async (memberId: string,organizationId:string) => {
 			const member = await adapter.delete<Member>({
 				model: "member",
 				where: [
@@ -222,7 +226,10 @@ export const getOrgAdapter = (
 						field: "id",
 						value: memberId,
 					},
-			
+					{
+						field: "organizationId",
+						value: organizationId,
+					}
 				],
 			});
 			return member;

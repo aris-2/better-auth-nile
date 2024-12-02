@@ -199,7 +199,7 @@ export const removeMember = createAuthEndpoint(
 				message: "Member not found!",
 			});
 		}
-		await adapter.deleteMember(existing.id);
+		await adapter.deleteMember(existing.id,organizationId);
 		if (
 			session.user.id === existing.userId &&
 			session.session.activeOrganizationId === existing.organizationId
@@ -319,6 +319,7 @@ export const updateMemberRole = <O extends OrganizationOptions>(option: O) =>
 
 			const updatedMember = await adapter.updateMember(
 				ctx.body.memberId,
+				organizationId,
 				ctx.body.role as string,
 			);
 			if (!updatedMember) {
