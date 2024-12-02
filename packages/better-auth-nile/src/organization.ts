@@ -353,7 +353,7 @@ export const organization = <O extends OrganizationOptions>(options?: O) => {
 				},
 			},
 			organization: {
-				modelName: options?.schema?.organization?.modelName,
+				modelName: options?.schema?.organization?.modelName ?? "tenants",
 				fields: {
 					name: {
 						type: "string",
@@ -373,7 +373,7 @@ export const organization = <O extends OrganizationOptions>(options?: O) => {
 					createdAt: {
 						type: "date",
 						required: true,
-						fieldName: options?.schema?.organization?.fields?.createdAt,
+						fieldName: options?.schema?.organization?.fields?.createdAt ?? "created",
 					},
 					metadata: {
 						type: "string",
@@ -383,7 +383,7 @@ export const organization = <O extends OrganizationOptions>(options?: O) => {
 				},
 			},
 			member: {
-				modelName: options?.schema?.member?.modelName,
+				modelName: options?.schema?.member?.modelName ?? "tenant_users",
 				fields: {
 					organizationId: {
 						type: "string",
@@ -392,12 +392,12 @@ export const organization = <O extends OrganizationOptions>(options?: O) => {
 							model: "organization",
 							field: "id",
 						},
-						fieldName: options?.schema?.member?.fields?.organizationId,
+						fieldName: options?.schema?.member?.fields?.organizationId ?? "tenant_id",
 					},
 					userId: {
 						type: "string",
 						required: true,
-						fieldName: options?.schema?.member?.fields?.userId,
+						fieldName: options?.schema?.member?.fields?.userId ?? "user_id",
 						references: {
 							model: "user",
 							field: "id",
@@ -412,7 +412,7 @@ export const organization = <O extends OrganizationOptions>(options?: O) => {
 					createdAt: {
 						type: "date",
 						required: true,
-						fieldName: options?.schema?.member?.fields?.createdAt,
+						fieldName: options?.schema?.member?.fields?.createdAt ?? "created",
 					},
 				},
 			},
@@ -426,7 +426,7 @@ export const organization = <O extends OrganizationOptions>(options?: O) => {
 							model: "organization",
 							field: "id",
 						},
-						fieldName: options?.schema?.invitation?.fields?.organizationId,
+						fieldName: options?.schema?.invitation?.fields?.organizationId ?? "tenant_id",
 					},
 					email: {
 						type: "string",
