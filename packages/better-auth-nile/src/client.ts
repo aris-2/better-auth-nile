@@ -4,7 +4,7 @@ import type {
 	Member,
 	Organization,
 } from "./schema";
-import type { Prettify } from "better-auth/types/helper";
+import type { Prettify } from "better-auth/types";
 import {
 	adminAc,
 	defaultStatements,
@@ -13,7 +13,7 @@ import {
 	type AccessControl,
 	type Role,
 } from "./access";
-import type { BetterAuthClientPlugin } from "better-auth/client/types";
+import type { BetterAuthClientPlugin } from "better-auth/client";
 import type { organization } from "./organization";
 import { useAuthQuery } from "better-auth/client";
 

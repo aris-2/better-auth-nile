@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createAuthEndpoint } from "better-auth/api";
-import { generateId } from "better-auth/utils/id";
+import { generateId } from "../utils";
 import { getOrgAdapter } from "../adapter";
 import { orgMiddleware, orgSessionMiddleware } from "../call";
 import { APIError } from "better-call";

@@ -1,10 +1,15 @@
 {
   "name": "better-auth-nile",
-  "version": "0.0.0",
+  "version": "0.1.13",
   "description": "",
-  "main": "intex.ts",
+  "main": "./dist/index",
+  "module": "./dist/index",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -21,7 +26,11 @@
     "better-auth": "^1.0.7",
     "better-call": "0.3.3-beta.2",
     "nanostores": "^0.11.3",
+    "tsup": "^8.3.5",
     "uuid": "^11.0.3",
     "zod": "^3.23.8"
-  }
+  },
+  "files": [
+    "dist/**/*"               
+  ]
 }

@@ -6,11 +6,11 @@ import {
 	type ZodOptional,
 	z,
 } from "zod";
-import type { User } from "better-auth/schema";
+import type { User } from "better-auth";
 import { createAuthEndpoint } from "better-auth/api";
 import { getSessionFromCtx } from "better-auth/api";
-import type { AuthContext } from "better-auth/init";
-import type { BetterAuthPlugin } from "better-auth/types/plugins";
+import type { AuthContext } from "better-auth";
+import type { BetterAuthPlugin } from "better-auth/types";
 import { shimContext } from "./utils/shim";
 import {
 	type AccessControl,
@@ -43,7 +43,7 @@ import {
 	updateOrganization,
 } from "./routes/crud-org";
 import type { Invitation, Member, Organization } from "./schema";
-import type { Prettify } from "better-auth/types/helper";
+import type { Prettify } from "better-auth/types";
 
 export interface OrganizationOptions {
 	/**
