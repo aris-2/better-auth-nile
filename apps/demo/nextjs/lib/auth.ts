@@ -12,8 +12,6 @@ import {
 import { reactInvitationEmail } from "./email/invitation";
 import { reactResetPasswordEmail } from "./email/rest-password";
 import { resend } from "./email/resend";
-import { MysqlDialect } from "kysely";
-import { createPool } from "mysql2/promise";
 import { nextCookies } from "better-auth/next-js";
 import { addAccountToSession } from "./plugin";
 import {organization} from "better-auth-nile"
@@ -51,6 +49,12 @@ export const auth = betterAuth({
 			maxAge: 60,
 		},
 	},
+	user: {
+		modelName: "users",
+		fields: {
+		  image: "picture",
+		} 
+	 },
 	emailVerification: {
 		async sendVerificationEmail({ user, url }) {
 			console.log("Sending verification email to", user.email);
