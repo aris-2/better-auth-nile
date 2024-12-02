@@ -205,7 +205,8 @@ export const getOrgAdapter = (
 					{
 						field: "id",
 						value: memberId,
-					},
+						
+					}
 				],
 				update: {
 					role,
@@ -221,6 +222,7 @@ export const getOrgAdapter = (
 						field: "id",
 						value: memberId,
 					},
+			
 				],
 			});
 			return member;
@@ -447,6 +449,7 @@ export const getOrgAdapter = (
 		},
 		updateInvitation: async (data: {
 			invitationId: string;
+			organizationId: string;
 			status: "accepted" | "canceled" | "rejected";
 		}) => {
 			const invitation = await adapter.update<Invitation>({
@@ -456,6 +459,10 @@ export const getOrgAdapter = (
 						field: "id",
 						value: data.invitationId,
 					},
+					{
+						field: "organizationId",
+						value: data.organizationId,
+					}
 				],
 				update: {
 					status: data.status,

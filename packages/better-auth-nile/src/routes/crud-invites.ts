@@ -234,6 +234,7 @@ export const acceptInvitation = createAuthEndpoint(
 		}
 		const acceptedI = await adapter.updateInvitation({
 			invitationId: ctx.body.invitationId,
+			organizationId:invitation.organizationId,
 			status: "accepted",
 		});
 		const member = await adapter.createMember({
@@ -316,6 +317,7 @@ export const rejectInvitation = createAuthEndpoint(
 		}
 		const rejectedI = await adapter.updateInvitation({
 			invitationId: ctx.body.invitationId,
+			organizationId:invitation.organizationId,
 			status: "rejected",
 		});
 		return ctx.json({
@@ -384,6 +386,7 @@ export const cancelInvitation = createAuthEndpoint(
 		}
 		const canceledI = await adapter.updateInvitation({
 			invitationId: ctx.body.invitationId,
+			organizationId: member.organizationId,
 			status: "canceled",
 		});
 		return ctx.json(canceledI);
