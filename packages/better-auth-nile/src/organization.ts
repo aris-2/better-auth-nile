@@ -322,7 +322,7 @@ export const organization = <O extends OrganizationOptions>(options?: O) => {
 							message: "You are not a member of this organization",
 						});
 					}
-					const role = roles[member.role as keyof typeof roles];
+					const role = roles[member.role[0] as keyof typeof roles];
 					const result = role.authorize(ctx.body.permission as any);
 					if (result.error) {
 						return ctx.json(
@@ -383,7 +383,7 @@ export const organization = <O extends OrganizationOptions>(options?: O) => {
 				},
 			},
 			member: {
-				modelName: options?.schema?.member?.modelName ?? "tenant_users",
+				modelName: "tenant_users",
 				fields: {
 					organizationId: {
 						type: "string",
@@ -407,7 +407,7 @@ export const organization = <O extends OrganizationOptions>(options?: O) => {
 						type: "string",
 						required: true,
 						defaultValue: "member",
-						fieldName: options?.schema?.member?.fields?.role,
+						fieldName: options?.schema?.member?.fields?.role ?? "roles",
 					},
 					createdAt: {
 						type: "date",
@@ -436,7 +436,7 @@ export const organization = <O extends OrganizationOptions>(options?: O) => {
 					role: {
 						type: "string",
 						required: false,
-						fieldName: options?.schema?.invitation?.fields?.role,
+						fieldName: options?.schema?.invitation?.fields?.role ?? "roles",
 					},
 					status: {
 						type: "string",

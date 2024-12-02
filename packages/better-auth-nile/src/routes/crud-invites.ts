@@ -112,7 +112,7 @@ export const createInvitation = <O extends OrganizationOptions | undefined>(
 					message: "Member not found!",
 				});
 			}
-			const role = ctx.context.roles[member.role];
+			const role = ctx.context.roles[member.role[0]];
 			if (!role) {
 				throw new APIError("BAD_REQUEST", {
 					message: "Role not found!",
@@ -164,7 +164,7 @@ export const createInvitation = <O extends OrganizationOptions | undefined>(
 			await ctx.context.orgOptions.sendInvitationEmail?.(
 				{
 					id: invitation.id,
-					role: invitation.role as string,
+					role: invitation.role[0] as string,
 					email: invitation.email,
 					organization: organization,
 					inviter: {
@@ -376,7 +376,7 @@ export const cancelInvitation = createAuthEndpoint(
 				message: "Member not found!",
 			});
 		}
-		const canCancel = ctx.context.roles[member.role].authorize({
+		const canCancel = ctx.context.roles[member.role[0]].authorize({
 			invitation: ["cancel"],
 		});
 		if (canCancel.error) {

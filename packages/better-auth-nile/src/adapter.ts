@@ -52,7 +52,7 @@ export const getOrgAdapter = (
 					organizationId: organization.id,
 					userId: data.user.id,
 					createdAt: new Date(),
-					role: options?.creatorRole || "owner",
+					role: [options?.creatorRole || "owner"],
 				},
 			});
 			return {
@@ -407,7 +407,7 @@ export const getOrgAdapter = (
 				model: "invitation",
 				data: {
 					email: invitation.email,
-					role: invitation.role,
+					role: [invitation.role],
 					organizationId: invitation.organizationId,
 					status: "pending",
 					expiresAt,

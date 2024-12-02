@@ -69,7 +69,7 @@ export const addMember = <O extends OrganizationOptions>() =>
 				id: generateId(),
 				organizationId: orgId,
 				userId: user.id,
-				role: ctx.body.role as string,
+				role: [ctx.body.role as string],
 				createdAt: new Date(),
 			});
 
@@ -157,7 +157,7 @@ export const removeMember = createAuthEndpoint(
 				message: "Member not found!",
 			});
 		}
-		const role = ctx.context.roles[member.role];
+		const role = ctx.context.roles[member.role[0]];
 		if (!role) {
 			throw new APIError("BAD_REQUEST", {
 				message: "Role not found!",
@@ -168,7 +168,7 @@ export const removeMember = createAuthEndpoint(
 			member.id === ctx.body.memberIdOrEmail;
 		const isOwnerLeaving =
 			isLeaving &&
-			member.role === (ctx.context.orgOptions?.creatorRole || "owner");
+			member.role[0] === (ctx.context.orgOptions?.creatorRole || "owner");
 		if (isOwnerLeaving) {
 			throw new APIError("BAD_REQUEST", {
 				message: "You cannot leave the organization as the owner",
@@ -290,7 +290,7 @@ export const updateMemberRole = <O extends OrganizationOptions>(option: O) =>
 					},
 				});
 			}
-			const role = ctx.context.roles[member.role];
+			const role = ctx.context.roles[member.role[0]];
 			if (!role) {
 				return ctx.json(null, {
 					status: 400,
@@ -303,11 +303,12 @@ export const updateMemberRole = <O extends OrganizationOptions>(option: O) =>
 			 * If the member is not an owner, they cannot update the role of another member
 			 * as an owner.
 			 */
+			console.log(ctx.body.role)
 			const canUpdateMember =
 				role.authorize({
 					member: ["update"],
 				}).error ||
-				(ctx.body.role === "owner" && member.role !== "owner");
+				(ctx.body.role === "owner" && member.role[0] !== "owner");
 			if (canUpdateMember) {
 				return ctx.json(null, {
 					body: {

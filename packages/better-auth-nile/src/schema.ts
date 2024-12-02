@@ -2,7 +2,7 @@ import { z, ZodLiteral } from "zod";
 import { generateId } from "./utils/id";
 import type { OrganizationOptions } from "./organization";
 
-export const role = z.string();
+export const role = z.array(z.string());
 export const invitationStatus = z
 	.enum(["pending", "accepted", "rejected", "canceled"])
 	.default("pending");
