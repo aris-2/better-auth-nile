@@ -90,7 +90,7 @@ export default function SignIn() {
 								{
 									email: email,
 									password: password,
-									callbackURL: "/dashboard",
+									callbackURL: "/private",
 									rememberMe,
 								},
 								{
@@ -116,7 +116,7 @@ export default function SignIn() {
 							onClick={async () => {
 								await signIn.social({
 									provider: "github",
-									callbackURL: "/dashboard",
+									callbackURL: "/private",
 								});
 							}}
 						>
@@ -139,7 +139,7 @@ export default function SignIn() {
 							onClick={async () => {
 								await signIn.social({
 									provider: "google",
-									callbackURL: "/dashboard",
+									callbackURL: "/private",
 								});
 							}}
 						>
@@ -173,7 +173,7 @@ export default function SignIn() {
 							onClick={async () => {
 								await signIn.social({
 									provider: "microsoft",
-									callbackURL: "/dashboard",
+									callbackURL: "/private",
 								});
 							}}
 						>
@@ -195,7 +195,7 @@ export default function SignIn() {
 							onClick={async () => {
 								await signIn.social({
 									provider: "twitch",
-									callbackURL: "/dashboard",
+									callbackURL: "/private",
 								});
 							}}
 						>
@@ -218,7 +218,7 @@ export default function SignIn() {
 							onClick={async () => {
 								await signIn.social({
 									provider: "facebook",
-									callbackURL: "/dashboard",
+									callbackURL: "/private",
 								});
 							}}
 						>
@@ -240,7 +240,7 @@ export default function SignIn() {
 							onClick={async () => {
 								await signIn.social({
 									provider: "twitter",
-									callbackURL: "/dashboard",
+									callbackURL: "/private",
 								});
 							}}
 						>
@@ -273,7 +273,7 @@ export default function SignIn() {
 							await signIn.passkey({
 								fetchOptions: {
 									onResponse(context) {
-										router.push("/dashboard");
+										router.push("/private");
 									},
 								},
 							});
