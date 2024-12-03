@@ -71,7 +71,7 @@ export function OrganizationCard(props: {
 	const currentMember = optimisticOrg?.members.find(
 		(member) => member.userId === session?.user.id,
 	);
-	console.log(optimisticOrg?.members)
+
 	return (
 		<Card>
 			<CardHeader>
@@ -154,7 +154,6 @@ export function OrganizationCard(props: {
 						</p>
 						<div className="flex flex-col gap-2">
 							{optimisticOrg?.members.map((member) => (
-								
 								<div
 									key={member.id}
 									className="flex justify-between items-center"
@@ -178,7 +177,7 @@ export function OrganizationCard(props: {
 									</div>
 									{member.role[0] !== "owner" &&
 										(currentMember?.role[0] === "owner" ||
-											currentMember?.role === "admin") && (
+											currentMember?.role[0] === "admin") && (
 											<Button
 												size="sm"
 												variant="destructive"
@@ -328,7 +327,7 @@ export function OrganizationCard(props: {
 	);
 }
 
-function CreateOrganizationDialog() {
+export function CreateOrganizationDialog() {
 	const [name, setName] = useState("");
 	const [slug, setSlug] = useState("");
 	const [loading, setLoading] = useState(false);

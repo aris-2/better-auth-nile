@@ -29,9 +29,7 @@ export default function RootLayout({
 			</head>
 			<body className={`${GeistSans.variable} ${GeistMono.variable} font-sans`}>
 				<ThemeProvider attribute="class" defaultTheme="dark">
-					<Wrapper>
 						<WrapperWithQuery>{children}</WrapperWithQuery>
-					</Wrapper>
 					<Toaster richColors closeButton />
 				</ThemeProvider>
 			</body>
