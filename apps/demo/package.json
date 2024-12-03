@@ -55,7 +55,7 @@
     "@tanstack/react-query": "^5.56.2",
     "@types/better-sqlite3": "^7.6.11",
     "@uiw/react-json-view": "2.0.0-alpha.30",
-    "better-auth": "1.0.7",
+    "better-auth": "0.4.0",
     "better-auth-nile": "workspace:*",
     "better-call": "0.2.3-beta.2",
     "better-sqlite3": "^11.3.0",
