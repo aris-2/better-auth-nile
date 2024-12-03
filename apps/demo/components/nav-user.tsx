@@ -79,7 +79,16 @@ export function NavUser({
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={()=>{client.signOut()}}>
+            <DropdownMenuItem onClick={()=>{
+              client.signOut(
+                {
+                  fetchOptions: {
+                    onSuccess: () => {
+                      router.push("/"); // redirect to login page
+                    },
+                  },
+                }
+            )}}>
               <LogOut />
               Log out
             </DropdownMenuItem>
