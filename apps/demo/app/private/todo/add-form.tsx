@@ -40,12 +40,12 @@ export function AddForm() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     try{
-      toast.loading("Creating todo in progress...")
+      toast.loading("Creating todo in progress...",{ id: "new-todo" })
       await addTodo(values.title)
-      toast.success("todo creating with success")
+      toast.success("todo creating with success",{ id: "new-todo" })
 
     }catch(e:any){
-      toast.error("error in creating new todo")
+      toast.error("error in creating new todo",{ id: "new-todo" })
     }
   }
 
