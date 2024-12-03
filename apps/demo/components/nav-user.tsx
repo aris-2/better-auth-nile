@@ -1,11 +1,10 @@
-"use client"
+"use client";
 
 import {
-  BadgeCheck,
-  Bell,
   LogOut,
-  Sparkles,
+  Loader2
 } from "lucide-react"
+import { Button } from "@/components/ui/button";
 
 import {
   Avatar,
@@ -15,7 +14,6 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -27,8 +25,12 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
-import { CaretSortIcon, ComponentPlaceholderIcon } from "@radix-ui/react-icons"
+import { CaretSortIcon } from "@radix-ui/react-icons"
 import { client } from "@/lib/auth-client"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+
 
 
 
@@ -38,7 +40,9 @@ export function NavUser({
 }: {
   user:any
 }) {
-  const { isMobile } = useSidebar()
+  const { isMobile } = useSidebar();
+  const router = useRouter();
+  const [isSignOut, setIsSignOut] = useState<boolean>(false);
 
   return (
     <SidebarMenu>
@@ -79,19 +83,33 @@ export function NavUser({
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={()=>{
-              client.signOut(
-                {
-                  fetchOptions: {
-                    onSuccess: () => {
-                      router.push("/"); // redirect to login page
-                    },
-                  },
-                }
-            )}}>
-              <LogOut />
-              Log out
-            </DropdownMenuItem>
+            <Button
+					className="w-full"
+					variant="secondary"
+					onClick={async () => {
+						setIsSignOut(true);
+						await client.signOut({
+							fetchOptions: {
+								onSuccess() {
+									router.push("/");
+								},
+							},
+						});
+						setIsSignOut(false);
+					}}
+					disabled={isSignOut}
+				>
+					<span className="text-sm">
+						{isSignOut ? (
+							<Loader2 size={15} className="animate-spin" />
+						) : (
+							<div className="flex items-center gap-2">
+								<LogOut size={16} />
+								Sign Out
+							</div>
+						)}
+					</span>
+				</Button>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
