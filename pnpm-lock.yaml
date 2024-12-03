@@ -156,8 +156,8 @@ importers:
         specifier: 1.0.7
         version: 1.0.7
       better-auth-nile:
-        specifier: workspace:*
-        version: link:../../packages/better-auth-nile
+        specifier: 0.4.0
+        version: 0.4.0(postcss@8.4.49)(typescript@5.5.4)
       better-call:
         specifier: 0.2.3-beta.2
         version: 0.2.3-beta.2
@@ -2701,6 +2701,9 @@ packages:
 
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
+
+  better-auth-nile@0.4.0:
+    resolution: {integrity: sha512-4rJWeqvMAhwN5i1F6B/Yy8S1V5xO62KaefXj/lfGiKP3L1oulzYUqhVWyl+I4jcdrqE4WdtN4b5tmo0k6Jox/w==}
 
   better-auth@1.0.10:
     resolution: {integrity: sha512-fm6nZj/jEhtwT2dGg2bxnDCE8BVJ+drJHYgv+u2tcwzsTHg4y4nz94S0kF/f6ERnL+clH8ZY9DTcfKEsquqCMw==}
@@ -7231,6 +7234,26 @@ snapshots:
 
   base64-js@1.5.1: {}
 
+  better-auth-nile@0.4.0(postcss@8.4.49)(typescript@5.5.4):
+    dependencies:
+      '@better-fetch/fetch': 1.1.12
+      better-auth: 1.0.10
+      better-call: 0.3.3-beta.4
+      nanostores: 0.11.3
+      tsup: 8.3.5(postcss@8.4.49)(typescript@5.5.4)
+      uuid: 11.0.3
+      zod: 3.23.8
+    transitivePeerDependencies:
+      - '@microsoft/api-extractor'
+      - '@swc/core'
+      - encoding
+      - jiti
+      - postcss
+      - supports-color
+      - tsx
+      - typescript
+      - yaml
+
   better-auth@1.0.10:
     dependencies:
       '@better-fetch/fetch': 1.1.12
@@ -9500,6 +9523,33 @@ snapshots:
     optionalDependencies:
       postcss: 8.4.49
       typescript: 5.7.2
+    transitivePeerDependencies:
+      - jiti
+      - supports-color
+      - tsx
+      - yaml
+
+  tsup@8.3.5(postcss@8.4.49)(typescript@5.5.4):
+    dependencies:
+      bundle-require: 5.0.0(esbuild@0.24.0)
+      cac: 6.7.14
+      chokidar: 4.0.1
+      consola: 3.2.3
+      debug: 4.3.7
+      esbuild: 0.24.0
+      joycon: 3.1.1
+      picocolors: 1.1.1
+      postcss-load-config: 6.0.1(jiti@1.21.6)(postcss@8.4.49)(yaml@2.6.1)
+      resolve-from: 5.0.0
+      rollup: 4.28.0
+      source-map: 0.8.0-beta.0
+      sucrase: 3.35.0
+      tinyexec: 0.3.1
+      tinyglobby: 0.2.10
+      tree-kill: 1.2.2
+    optionalDependencies:
+      postcss: 8.4.49
+      typescript: 5.5.4
     transitivePeerDependencies:
       - jiti
       - supports-color
