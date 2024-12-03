@@ -1,6 +1,6 @@
 {
   "name": "better-auth-nile",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "",
   "main": "./dist/index",
   "module": "./dist/index",
@@ -23,8 +23,8 @@
   "homepage": "https://github.com/aris-2/better-auth-nile#readme",
   "dependencies": {
     "@better-fetch/fetch": "^1.1.12",
-    "better-auth": "^1.0.7",
-    "better-call": "0.3.3-beta.2",
+    "better-auth": "^1.0.10",
+    "better-call": "0.3.3-beta.4",
     "nanostores": "^0.11.3",
     "tsup": "^8.3.5",
     "uuid": "^11.0.3",

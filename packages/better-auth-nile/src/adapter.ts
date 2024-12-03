@@ -11,6 +11,7 @@ import type {
 } from "./schema";
 import { BetterAuthError } from "better-auth";
 import type { AuthContext } from "better-auth/types";
+import { parseJSON } from "./utils/parser";
 
 export const getOrgAdapter = (
 	context: AuthContext,
@@ -248,10 +249,22 @@ export const getOrgAdapter = (
 				],
 				update: {
 					...data,
-					metadata: data.metadata ? JSON.stringify(data.metadata) : undefined,
-				},
+					metadata:
+					typeof data.metadata === "object"
+						? JSON.stringify(data.metadata)
+						: data.metadata
+					},
 			});
-			return organization;
+			if (!organization) {
+				return null;
+			}
+			
+			return {
+				...organization,
+				metadata: organization.metadata
+					? parseJSON(organization.metadata)
+					: undefined
+			};
 		},
 		deleteOrganization: async (organizationId: string) => {
 			await adapter.delete({
