@@ -95,3 +95,12 @@ CREATE TABLE "passkey" (
   "transports" TEXT,
   "createdAt" TIMESTAMP
 );
+
+-- Create table: ONLY NECESSARY FOR THE DEMO
+
+CREATE TABLE todos (
+    "id" UUID DEFAULT gen_random_uuid(),
+    "tenant_id" UUID,
+    "title" VARCHAR(256),
+    "complete" BOOLEAN
+);
