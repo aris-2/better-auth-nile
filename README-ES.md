@@ -1,3 +1,8 @@
+
+```
+npm install better-auth-nile
+```
+
 ## ¿que es esto?
 Un proyecto de autenticación basado en Next.js y el plugin de organizaciones [Better-Auth](https://www.better-auth.com/docs/plugins/organization)  adaptado para funcionar con la base de datos [Nile](https://www.thenile.dev/).
 
@@ -28,8 +33,10 @@ Para que el plugin de organizaciones de Better-Auth funcione con Nile debemos lo
 
    Para lograr utilizar estas tablas simplemente vamos a definir un esquema personalizado para el plugin en el archivo `auth.ts`.
     [ver](https://github.com/aris-2/better-auth-nile/commit/42fb0d9d7eca9ad4f6dd47219dbc0eb72306f54c)
+
+
 2. **Tener en cuenta las limitaciones de clave foránea y unique que tenemos al utilizar Nile.** 
-   El plugin de organizaciones tiene múltiples FK que hacen referencia a diferentes tablas. Para poder lograr la integración con Nile deberemos sacrificar algunas de ellas, debido a que Nile tiene limitaciones para usar FK entre tablas compartidas y aisladas. Ver: [tenant-sharing](https://www.thenile.dev/docs/tenant-virtualization/tenant-sharing). Así mismo, tiene una limitación al utilizar columnas del tipo unique en la tabla `tenants`.
+   El plugin de organizaciones tiene múltiples foreign keys que hacen referencia a diferentes tablas. Para poder lograr la integración con Nile deberemos sacrificar algunas de ellas, debido a que Nile tiene limitaciones para usar foreign keys entre tablas compartidas y aisladas. Ver: [tenant-sharing](https://www.thenile.dev/docs/tenant-virtualization/tenant-sharing). Así mismo, tiene una limitación al utilizar columnas del tipo unique en la tabla `tenants`.
 
    ### ¿Qué debemos sacrificar?
    1. **El uso de unique para el slug de las organizaciones:**
@@ -43,8 +50,18 @@ Para que el plugin de organizaciones de Better-Auth funcione con Nile debemos lo
       ```
       Si bien en la tabla pueden existir múltiples filas con el mismo slug, Better-Auth realiza una comprobación mediante una query antes de crear una nueva organización, por lo que esta modificación no afecta al funcionamiento, pero sí a la integridad de los datos.
 
-   2. **FK entre:**
+   2. **foraing key**
+    para poder adaptar las foreign keys a nile teniendo en cuenta las limitaciones de tablas compartidas, simplemente se movio la referencia de userId a una tabla que sea del tipo aisladoa: ver imagenes para mas detalles 
+    
 
+
+    Relaciones definidas por better-auth 
+    ![Original plugin tables](/images/better-auth.png)
+    
+
+
+    Relaciones personalizadas: en este caso la tabla users permanece como tabla compartida por lo que no tendra ninguna foraing key
+    ![Nile tables](/images/nile.webp)
 
    3. **Que el plugin de organizaciones funcione con UUID en lugar de nanoid.**
       Si bien Better-Auth nos ofrece una función para generar IDs personalizados, por el momento no funciona con los plugins. Para lograr esto, modificamos la función que se utiliza para generar el ID..
@@ -73,16 +90,12 @@ Para que el plugin de organizaciones de Better-Auth funcione con Nile debemos lo
       ],
       ```
       5- Modificar el tipo de role para que sea compatible con nile
-        En el plugin de better auth los roles de los miembros de las organizaciones se almacenan como un array mientras que better-auth los almacena como un array para poder utilizar la columna roles integrada en nile debemos modificar la forma en la que better-auth almacena los roles pasando de "admin" a ['admin'] para mas detalles ver [](https://github.com/aris-2/better-auth-nile/commit/6cab8632743d0838d6bc04f4cbc1c522043d9551) 
+        En el plugin de better auth los roles de los miembros de las organizaciones se almacenan como un string mientras que nile los almacena como un array para poder utilizar la columna roles integrada en nile debemos modificar la forma en la que better-auth almacena los roles por ejemplo pasamos de "admin" a ['admin'] para mas detalles ver [](https://github.com/aris-2/better-auth-nile/commit/6cab8632743d0838d6bc04f4cbc1c522043d9551) 
 
 
 ## Instalar : 
-- 1 - ejecutar npm install better-auth-nile    
-- 2 - ejecutar las migrations.sql en su consola de nile 
+- 1 - ejecutar las migrations.sql en su consola de nile [ver](/apps/demo//lib/migrations.sql)
+- 2 - ejecutar npm install better-auth-nile    
 - 3 - configurar las variavles de entorno
-
-
-	advanced:{
-		generateId:()=>{return uuidv4()}
-	},
-
+- 4 - configurar la generacion personalizada de id en su auth.ts para usar uuid [ver](/apps/demo/lib/auth.ts) 
+- 5 - definir la un schema personalizado para la tablas users, esto permitiar usar la tabla users de nile [ver](/apps/demo/lib/auth.ts) 
