@@ -18,6 +18,7 @@ import {nile} from "better-auth-nile"
 import { PostgresDialect } from 'kysely'
 import { Pool } from "pg"
 import { v4 as uuidv4 } from "uuid";
+import path from "path";
 
 const from = process.env.BETTER_AUTH_EMAIL || "delivered@resend.dev";
 const to = process.env.TEST_EMAIL || "";
@@ -26,8 +27,8 @@ const db = new PostgresDialect({
     pool: new Pool({
 		host: process.env.NILE_HOST,
 		database: process.env.NILE_DB,
-		user: process.env.NILE_USER,
-		password: process.env.NILE_PASSWORD,
+		user: process.env.NILEDB_USER,
+		password: process.env.NILEDB_PASSWORD,
 		
 	},)
 })

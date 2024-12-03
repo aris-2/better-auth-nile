@@ -73,7 +73,7 @@ export function OrganizationCard(props: {
 	);
 
 	return (
-		<Card>
+		<Card  className="bg-muted">
 			<CardHeader>
 				<CardTitle>Organization</CardTitle>
 				<div className="flex justify-between">
@@ -383,14 +383,14 @@ export function CreateOrganizationDialog() {
 						<Input
 							placeholder="Name"
 							value={name}
-							onChange={(e) => setName(e.target.value)}
+							onChange={(e:any) => setName(e.target.value)}
 						/>
 					</div>
 					<div className="flex flex-col gap-2">
 						<Label>Organization Slug</Label>
 						<Input
 							value={slug}
-							onChange={(e) => {
+							onChange={(e:any) => {
 								setSlug(e.target.value);
 								setIsSlugEdited(true);
 							}}
@@ -483,7 +483,7 @@ function InviteMemberDialog({
 					<Input
 						placeholder="Email"
 						value={email}
-						onChange={(e) => setEmail(e.target.value)}
+						onChange={(e:any) => setEmail(e.target.value)}
 					/>
 					<Label>Role</Label>
 					<Select value={role} onValueChange={setRole}>

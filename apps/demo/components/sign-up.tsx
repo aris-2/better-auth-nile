@@ -60,7 +60,7 @@ export function SignUp() {
 								id="first-name"
 								placeholder="Max"
 								required
-								onChange={(e) => {
+								onChange={(e:any) => {
 									setFirstName(e.target.value);
 								}}
 								value={firstName}
@@ -72,7 +72,7 @@ export function SignUp() {
 								id="last-name"
 								placeholder="Robinson"
 								required
-								onChange={(e) => {
+								onChange={(e:any) => {
 									setLastName(e.target.value);
 								}}
 								value={lastName}
@@ -86,7 +86,7 @@ export function SignUp() {
 							type="email"
 							placeholder="m@example.com"
 							required
-							onChange={(e) => {
+							onChange={(e:any) => {
 								setEmail(e.target.value);
 							}}
 							value={email}
@@ -97,7 +97,7 @@ export function SignUp() {
 						<PasswordInput
 							id="password"
 							value={password}
-							onChange={(e) => setPassword(e.target.value)}
+							onChange={(e:any) => setPassword(e.target.value)}
 							autoComplete="new-password"
 							placeholder="Password"
 						/>
@@ -107,7 +107,7 @@ export function SignUp() {
 						<PasswordInput
 							id="password_confirmation"
 							value={passwordConfirmation}
-							onChange={(e) => setPasswordConfirmation(e.target.value)}
+							onChange={(e:any) => setPasswordConfirmation(e.target.value)}
 							autoComplete="new-password"
 							placeholder="Confirm Password"
 						/>

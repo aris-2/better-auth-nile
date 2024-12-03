@@ -48,7 +48,7 @@ export default function SignIn() {
 							type="email"
 							placeholder="m@example.com"
 							required
-							onChange={(e) => {
+							onChange={(e:any) => {
 								setEmail(e.target.value);
 							}}
 							value={email}
@@ -67,7 +67,7 @@ export default function SignIn() {
 						<PasswordInput
 							id="password"
 							value={password}
-							onChange={(e) => setPassword(e.target.value)}
+							onChange={(e:any) => setPassword(e.target.value)}
 							autoComplete="password"
 							placeholder="Password"
 						/>

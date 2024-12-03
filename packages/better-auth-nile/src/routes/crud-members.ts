@@ -30,7 +30,7 @@ export const addMember = <O extends OrganizationOptions>() =>
 						session: {
 							activeOrganizationId?: string;
 						};
-					}>(ctx).catch((e) => null)
+					}>(ctx).catch((e:any) => null)
 				: null;
 			const orgId =
 				ctx.body.organizationId || session?.session.activeOrganizationId;

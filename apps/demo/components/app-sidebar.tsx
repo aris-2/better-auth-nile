@@ -5,6 +5,7 @@ import {
   UserRoundCog,
   Settings2,
   Braces,
+  ListChecks
 } from "lucide-react"
 
 import { NavProjects } from "@/components/nav-projects"
@@ -18,13 +19,17 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import {client}  from "@/lib/auth-client" // import the auth client
-import { Skeleton } from "@/components/ui/skeleton"
-const datas = {
-  projects: [
+
+const menuList=[
     {
       name: "Api Data View ",
-      url: "/private/",
+      url: "/private",
       icon: Braces,
+    },
+    {
+      name: "Todo Demo ",
+      url: "/private/todo",
+      icon: ListChecks,
     },
     {
       name: "Admin",
@@ -36,16 +41,13 @@ const datas = {
       url: "/private/settings",
       icon: Settings2,
     },
-  ],
-}
+  ]
+
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const {
     data: session, 
-    isPending, 
-    error 
   } = client.useSession()
-
 
 
   return (
@@ -55,14 +57,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         
       </SidebarHeader>
       <SidebarContent>
-        <NavProjects projects={datas.projects} />
+        <NavProjects projects={menuList} />
       </SidebarContent>
       <SidebarFooter>
-        {isPending ? 
-          <Skeleton className="h-8 w-[230px] rounded-sm" />
-          : 
-          <NavUser user={session?.user} 
-          />}
+        <NavUser user={session?.user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

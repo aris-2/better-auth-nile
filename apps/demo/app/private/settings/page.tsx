@@ -6,6 +6,7 @@ import { OrganizationCard } from "./organization-card";
 import AccountSwitcher from "@/components/account-switch";
 
 export default async function DashboardPage() {
+	
 	const [session, activeSessions, deviceSessions, organization] =
 		await Promise.all([
 			auth.api.getSession({
@@ -20,7 +21,7 @@ export default async function DashboardPage() {
 			auth.api.getFullOrganization({
 				headers: await headers(),
 			}),
-		]).catch((e) => {
+		]).catch((e:any) => {
 			throw redirect("/sign-in");
 		});
 	return (

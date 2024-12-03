@@ -1,37 +1,97 @@
-alter table "users" add column "emailVerified" boolean not null;
-alter table "users" add column "createdAt" timestamp not null;
-alter table "users" add column "updatedAt" timestamp not null;
-alter table "users" add column "twoFactorEnabled" boolean;
-alter table "users" add column "role" text;
-alter table "users" add column "banned" boolean;
-alter table "users" add column "banReason" text;
-alter table "users" add column "banExpires" timestamp;
+-- Alter table: Users
+ALTER TABLE "users"
+ADD COLUMN "emailVerified" BOOLEAN NOT NULL,
+ADD COLUMN "createdAt" TIMESTAMP NOT NULL,
+ADD COLUMN "updatedAt" TIMESTAMP NOT NULL,
+ADD COLUMN "twoFactorEnabled" BOOLEAN,
+ADD COLUMN "role" TEXT,
+ADD COLUMN "banned" BOOLEAN,
+ADD COLUMN "banReason" TEXT,
+ADD COLUMN "banExpires" TIMESTAMP;
 
-alter table "tenants" add column "slug" text not null;
-alter table "tenants" add column "logo" text;
-alter table "tenants" add column  "metadata" text;
+-- Alter table: Tenants
+ALTER TABLE "tenants"
+ADD COLUMN "slug" TEXT NOT NULL,
+ADD COLUMN "logo" TEXT,
+ADD COLUMN "metadata" TEXT;
 
-alter table "tenant_users" add column "id" uuid not null;
+-- Alter table: Tenant Users
+ALTER TABLE "tenant_users"
+ADD COLUMN "id" UUID NOT NULL;
 
+-- Create table: Invitation
 CREATE TABLE "invitation" (
-  "id" uuid NOT NULL ,
-  "tenant_id" uuid NOT NULL,
-  "email" text NOT NULL,
-  "roles" _text,
-  "status" text NOT NULL,
-  "expiresAt" timestamp NOT NULL,
-  "inviterId" uuid NOT NULL,
-   PRIMARY KEY ("tenant_id", "id"),
-   FOREIGN KEY ("tenant_id","inviterId") REFERENCES "tenant_users" ("tenant_id", "user_id"),
-   FOREIGN KEY ("tenant_id") REFERENCES "tenants" ("id")
+  "id" UUID NOT NULL,
+  "tenant_id" UUID NOT NULL,
+  "email" TEXT NOT NULL,
+  "roles" TEXT[],
+  "status" TEXT NOT NULL,
+  "expiresAt" TIMESTAMP NOT NULL,
+  "inviterId" UUID NOT NULL,
+  PRIMARY KEY ("tenant_id", "id"),
+  FOREIGN KEY ("tenant_id", "inviterId") REFERENCES "tenant_users" ("tenant_id", "user_id"),
+  FOREIGN KEY ("tenant_id") REFERENCES "tenants" ("id")
 );
 
-create table "session" ("id" uuid not null primary key, "expiresAt" timestamp not null, "token" text not null unique, "createdAt" timestamp not null, "updatedAt" timestamp not null, "ipAddress" text, "userAgent" text, "userId" uuid not null references "users" ("id"), "activeOrganizationId" uuid, "impersonatedBy" text);
+-- Create table: Session
+CREATE TABLE "session" (
+  "id" UUID NOT NULL PRIMARY KEY,
+  "expiresAt" TIMESTAMP NOT NULL,
+  "token" TEXT NOT NULL UNIQUE,
+  "createdAt" TIMESTAMP NOT NULL,
+  "updatedAt" TIMESTAMP NOT NULL,
+  "ipAddress" TEXT,
+  "userAgent" TEXT,
+  "userId" UUID NOT NULL REFERENCES "users" ("id"),
+  "activeOrganizationId" UUID,
+  "impersonatedBy" TEXT
+);
 
-create table "account" ("id" uuid not null primary key, "accountId" text not null, "providerId" text not null, "userId" uuid not null references "users" ("id"), "accessToken" text, "refreshToken" text, "idToken" text, "accessTokenExpiresAt" timestamp, "refreshTokenExpiresAt" timestamp, "scope" text, "password" text, "createdAt" timestamp not null, "updatedAt" timestamp not null);
+-- Create table: Account
+CREATE TABLE "account" (
+  "id" UUID NOT NULL PRIMARY KEY,
+  "accountId" TEXT NOT NULL,
+  "providerId" TEXT NOT NULL,
+  "userId" UUID NOT NULL REFERENCES "users" ("id"),
+  "accessToken" TEXT,
+  "refreshToken" TEXT,
+  "idToken" TEXT,
+  "accessTokenExpiresAt" TIMESTAMP,
+  "refreshTokenExpiresAt" TIMESTAMP,
+  "scope" TEXT,
+  "password" TEXT,
+  "createdAt" TIMESTAMP NOT NULL,
+  "updatedAt" TIMESTAMP NOT NULL
+);
 
-create table "verification" ("id" uuid not null primary key, "identifier" text not null, "value" text not null, "expiresAt" timestamp not null, "createdAt" timestamp, "updatedAt" timestamp);
+-- Create table: Verification
+CREATE TABLE "verification" (
+  "id" UUID NOT NULL PRIMARY KEY,
+  "identifier" TEXT NOT NULL,
+  "value" TEXT NOT NULL,
+  "expiresAt" TIMESTAMP NOT NULL,
+  "createdAt" TIMESTAMP,
+  "updatedAt" TIMESTAMP
+);
 
-create table "twoFactor" ("id" text not null primary key, "secret" text not null, "backupCodes" text not null, "userId" uuid not null references "users" ("id"));
+-- Create table: TwoFactor
+CREATE TABLE "twoFactor" (
+  "id" TEXT NOT NULL PRIMARY KEY,
+  "secret" TEXT NOT NULL,
+  "backupCodes" TEXT NOT NULL,
+  "userId" UUID NOT NULL REFERENCES "users" ("id")
+);
 
-create table "passkey" ("id" text not null primary key, "name" text, "publicKey" text not null, "userId" uuid not null references "users" ("id"), "webauthnUserID" text not null, "counter" integer not null, "deviceType" text not null, "backedUp" boolean not null, "transports" text, "createdAt" timestamp)
+-- Create table: Passkey
+CREATE TABLE "passkey" (
+  "id" TEXT NOT NULL PRIMARY KEY,
+  "name" TEXT,
+  "publicKey" TEXT NOT NULL,
+  "userId" UUID NOT NULL REFERENCES "users" ("id"),
+  "webauthnUserID" TEXT NOT NULL,
+  "counter" INTEGER NOT NULL,
+  "deviceType" TEXT NOT NULL,
+  "backedUp" BOOLEAN NOT NULL,
+  "transports" TEXT,
+  "createdAt" TIMESTAMP
+);

@@ -82,7 +82,7 @@ export function CreateOrganizationDialog() {
 						<Input
 							placeholder="Name"
 							value={name}
-							onChange={(e) => setName(e.target.value)}
+							onChange={(e:any) => setName(e.target.value)}
 							required
 						/>
 					</div>
@@ -90,7 +90,7 @@ export function CreateOrganizationDialog() {
 						<Label>Organization Slug</Label>
 						<Input
 							value={slug}
-							onChange={(e) => {
+							onChange={(e:any) => {
 								setSlug(e.target.value);
 								setIsSlugEdited(true);
 							}}

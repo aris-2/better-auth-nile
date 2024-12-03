@@ -62,7 +62,7 @@ export default function Component() {
 									pattern="\d{6}"
 									maxLength={6}
 									value={totpCode}
-									onChange={(e) => setTotpCode(e.target.value)}
+									onChange={(e:any) => setTotpCode(e.target.value)}
 									placeholder="Enter 6-digit code"
 									required
 								/>

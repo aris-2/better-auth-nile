@@ -16,12 +16,13 @@ export default async function Home() {
 	return (
 		<div className="min-h-[80vh] flex items-center justify-center overflow-hidden no-visible-scrollbar px-6 md:px-0">
 			<main className="flex flex-col gap-4 row-start-2 items-center justify-center">
+	
 				<div className="flex flex-col gap-1">
 					<h3 className="font-bold text-4xl text-black dark:text-white text-center">
-						Better Auth.
+					The better auth with the better database
 					</h3>
 					<p className="text-center break-words text-sm md:text-base">
-						Official demo to showcase{" "}
+						Demo to showcase{" "}
 						<a
 							href="https://better-auth.com"
 							target="_blank"

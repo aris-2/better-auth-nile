@@ -116,9 +116,13 @@ export default function AdminDashboard() {
 		}
 	};
 
-	const handleDeleteUser = async (id: string) => {
+	const handleDeleteUser = async (id: string,email:string) => {
 		setIsLoading(`delete-${id}`);
+		
 		try {
+			if (email === "demo@demo.com"){
+				throw new Error("Cannot delete demo user");
+			}
 			await client.admin.removeUser({ userId: id });
 			toast.success("User deleted successfully");
 			queryClient.invalidateQueries({
@@ -203,7 +207,7 @@ export default function AdminDashboard() {
 										id="email"
 										type="email"
 										value={newUser.email}
-										onChange={(e) =>
+										onChange={(e:any) =>
 											setNewUser({ ...newUser, email: e.target.value })
 										}
 										required
@@ -215,7 +219,7 @@ export default function AdminDashboard() {
 										id="password"
 										type="password"
 										value={newUser.password}
-										onChange={(e) =>
+										onChange={(e:any) =>
 											setNewUser({ ...newUser, password: e.target.value })
 										}
 										required
@@ -226,7 +230,7 @@ export default function AdminDashboard() {
 									<Input
 										id="name"
 										value={newUser.name}
-										onChange={(e) =>
+										onChange={(e:any) =>
 											setNewUser({ ...newUser, name: e.target.value })
 										}
 										required
@@ -277,7 +281,7 @@ export default function AdminDashboard() {
 									<Input
 										id="reason"
 										value={banForm.reason}
-										onChange={(e) =>
+										onChange={(e:any) =>
 											setBanForm({ ...banForm, reason: e.target.value })
 										}
 										required
@@ -367,7 +371,7 @@ export default function AdminDashboard() {
 												<Button
 													variant="destructive"
 													size="sm"
-													onClick={() => handleDeleteUser(user.id)}
+													onClick={() => handleDeleteUser(user.id,user.email)}
 													disabled={isLoading?.startsWith("delete")}
 												>
 													{isLoading === `delete-${user.id}` ? (

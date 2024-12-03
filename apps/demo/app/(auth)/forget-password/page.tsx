@@ -94,7 +94,7 @@ export default function Component() {
 									type="email"
 									placeholder="Enter your email"
 									value={email}
-									onChange={(e) => setEmail(e.target.value)}
+									onChange={(e:any) => setEmail(e.target.value)}
 									required
 								/>
 							</div>

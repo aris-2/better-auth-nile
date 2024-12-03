@@ -71,7 +71,7 @@ export default function UserCard(props: {
 	const [emailVerificationPending, setEmailVerificationPending] =
 		useState<boolean>(false);
 	return (
-		<Card>
+		<Card className="bg-muted">
 			<CardHeader>
 				<CardTitle>User</CardTitle>
 			</CardHeader>
@@ -227,7 +227,7 @@ export default function UserCard(props: {
 											<div className="flex flex-col gap-2">
 												<PasswordInput
 													value={twoFaPassword}
-													onChange={(e) => setTwoFaPassword(e.target.value)}
+													onChange={(e:any) => setTwoFaPassword(e.target.value)}
 													placeholder="Enter Password"
 												/>
 												<Button
@@ -302,7 +302,7 @@ export default function UserCard(props: {
 											</Label>
 											<Input
 												value={twoFaPassword}
-												onChange={(e) => setTwoFaPassword(e.target.value)}
+												onChange={(e:any) => setTwoFaPassword(e.target.value)}
 												placeholder="Enter OTP"
 											/>
 										</div>
@@ -313,7 +313,7 @@ export default function UserCard(props: {
 												id="password"
 												placeholder="Password"
 												value={twoFaPassword}
-												onChange={(e) => setTwoFaPassword(e.target.value)}
+												onChange={(e:any) => setTwoFaPassword(e.target.value)}
 											/>
 										</div>
 									)}
@@ -472,21 +472,21 @@ function ChangePassword() {
 					<PasswordInput
 						id="current-password"
 						value={currentPassword}
-						onChange={(e) => setCurrentPassword(e.target.value)}
+						onChange={(e:any) => setCurrentPassword(e.target.value)}
 						autoComplete="new-password"
 						placeholder="Password"
 					/>
 					<Label htmlFor="new-password">New Password</Label>
 					<PasswordInput
 						value={newPassword}
-						onChange={(e) => setNewPassword(e.target.value)}
+						onChange={(e:any) => setNewPassword(e.target.value)}
 						autoComplete="new-password"
 						placeholder="New Password"
 					/>
 					<Label htmlFor="password">Confirm Password</Label>
 					<PasswordInput
 						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
+						onChange={(e:any) => setConfirmPassword(e.target.value)}
 						autoComplete="new-password"
 						placeholder="Confirm Password"
 					/>
@@ -582,7 +582,7 @@ function EditUserDialog() {
 						type="name"
 						placeholder={data?.user.name}
 						required
-						onChange={(e) => {
+						onChange={(e:any) => {
 							setName(e.target.value);
 						}}
 					/>
@@ -700,7 +700,7 @@ function AddPasskey() {
 					<Input
 						id="passkey-name"
 						value={passkeyName}
-						onChange={(e) => setPasskeyName(e.target.value)}
+						onChange={(e:any) => setPasskeyName(e.target.value)}
 					/>
 				</div>
 				<DialogFooter>
@@ -822,7 +822,7 @@ function ListPasskeys() {
 							<Input
 								id="passkey-name"
 								value={passkeyName}
-								onChange={(e) => setPasskeyName(e.target.value)}
+								onChange={(e:any) => setPasskeyName(e.target.value)}
 								placeholder="My Passkey"
 							/>
 						</div>

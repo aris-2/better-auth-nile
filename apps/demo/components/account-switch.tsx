@@ -30,10 +30,10 @@ export default function AccountSwitcher({
 	const [open, setOpen] = useState(false);
 	const router = useRouter();
 	return (
-		<Popover open={open} onOpenChange={setOpen}>
+		<Popover open={open} onOpenChange={setOpen} >
 			<PopoverTrigger asChild>
 				<Button
-					variant="outline"
+					variant="secondary"
 					role="combobox"
 					aria-expanded={open}
 					aria-label="Select a user"

@@ -75,7 +75,7 @@ export default function Component() {
 										id="otp"
 										placeholder="Enter 6-digit OTP"
 										value={otp}
-										onChange={(e) => setOtp(e.target.value)}
+										onChange={(e:any) => setOtp(e.target.value)}
 										maxLength={6}
 									/>
 								</div>

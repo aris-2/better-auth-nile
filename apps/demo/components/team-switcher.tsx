@@ -45,9 +45,7 @@ export function TeamSwitcher() {
 
   return (
     <div>
-      {isPendingActiveTenant && isPendingOrg ? 
-        <Skeleton className="h-8 w-[230px] rounded-sm" />
-      :      
+  
       <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
@@ -106,10 +104,6 @@ export function TeamSwitcher() {
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
-            
-            
-            }
-
     </div>
     
   )
