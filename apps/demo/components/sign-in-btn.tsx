@@ -80,7 +80,7 @@ export async function SignInFallback() {
 						<path fill="currentColor" d="M2 3h20v18H2zm18 16V7H4v12z"></path>
 					</svg>
 				)}
-				<span>{guessIsSignIn ? "Dashboard" : "Sign In"}</span>
+				<span>{guessIsSignIn ? "private" : "Sign In"}</span>
 			</Button>
 		</Link>
 	);
